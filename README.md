@@ -41,7 +41,7 @@ to tailor a message:
 
 ## validations
 
-except where starred, a non-string value will fail validation.
+except where starred, anything other than a string will fail validation.
 
 for details, see the [code](/index.es6). it's very clear i promise.
 
