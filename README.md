@@ -41,30 +41,23 @@ to tailor a message:
 
 ## validations
 
-except where noted, a non-string value will fail validation.
+except where starred, a non-string value will fail validation.
 
 for details, see the [code](/index.es6). it's very clear i promise.
 
 - email
-- equals
-  - a wrapper around === that accepts all types
-  - e.g., validate that a checkbox is checked
+- equals*
 - greaterThan
 - integer
-- length
-  - accepts anything with a length property
+- length*
 - lessThan
 - max
-- maxLength
-  - accepts anything with a length property
+- maxLength*
 - min
-- minLength
-  - accepts anything with a length property
-  - e.g., validate that at least one option is selected
+- minLength*
 - number
 - numeric
 - regex
-  - values are trimmed before comparison
 - required
 
 ## aliases
