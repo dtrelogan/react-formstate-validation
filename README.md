@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/dtrelogan/react-formstate-validation/badge.svg?branch=master)](https://coveralls.io/github/dtrelogan/react-formstate-validation?branch=master)
 [![Build Status](https://travis-ci.org/dtrelogan/react-formstate-validation.svg?branch=master)](https://travis-ci.org/dtrelogan/react-formstate-validation)
 
-a validation library for [react-formstate](https://www.npmjs.com/package/react-formstate)
+a validation library for [react-formstate](https://github.com/dtrelogan/react-formstate)
 
     $ npm install react-formstate --save
     $ npm install react-formstate-validation --save
@@ -119,7 +119,7 @@ note you can provide your own library and aliases. you can plug in [validator](h
 
 this library expresses *common, unambiguous* use cases and saves you effort where it makes the most sense.
 
-[react-formstate](https://www.npmjs.com/package/react-formstate) provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
+[react-formstate](https://github.com/dtrelogan/react-formstate) provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
 
 for minor additions and modifications it's easiest to start there.
 
