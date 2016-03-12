@@ -137,10 +137,8 @@ this library keeps things simple:
 v => v.gte(10).lt(50)
 ```
 ```jsx
-module.exports = {
-  greaterThan: '%1 must be greater than %2',
-  lessThan: '%1 must be less than %2',
-  max: '%1 must be at most %2',
-  min: '%1 must be at least %2',
-};
+greaterThan: '%1 must be greater than %2',
+lessThan: '%1 must be less than %2',
+max: '%1 must be at most %2',
+min: '%1 must be at least %2'
 ```
