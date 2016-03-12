@@ -41,7 +41,9 @@ to tailor a message:
 
 ## validations
 
-strings only please. except where noted, a non-string value will fail validation.
+except where noted, a non-string value will fail validation.
+
+for details, see the [code](/index.es6). it's very clear i promise.
 
 - email
 - equals
@@ -63,10 +65,7 @@ strings only please. except where noted, a non-string value will fail validation
 - numeric
 - regex
   - values are trimmed before comparison
-  - you'll want to tailor a message...
 - required
-
-for details, see the [code](/index.es6). it's very clear i promise.
 
 ## aliases
 
@@ -121,15 +120,13 @@ let validationAdapter = new rfsv.FormStateAdapter(
 validationAdapter.plugInto(FormState);
 ```
 
-note you can provide your own library and aliases.
-
-you can plug in [validator](https://www.npmjs.com/package/validator) if you want.
+note you can provide your own library and aliases. you can plug in [validator](https://www.npmjs.com/package/validator) if you want.
 
 ## expansion
 
 this library expresses *common, unambiguous* use cases and saves you effort where it makes the most sense.
 
-the [react-formstate](https://www.npmjs.com/package/react-formstate) api provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
+[react-formstate](https://www.npmjs.com/package/react-formstate) provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
 
 for minor additions and modifications it's easiest to start there.
 
