@@ -41,7 +41,7 @@ to tailor a message:
 
 ## validations
 
-except where starred, anything other than a string will fail validation.
+except where starred, functions only accept string values, anything else will fail validation.
 
 for details, see the [code](/index.es6). it's very clear i promise.
 
@@ -117,22 +117,8 @@ note you can provide your own library and aliases. you can plug in [validator](h
 
 ## expansion
 
-this library expresses *common, unambiguous* use cases and saves you effort where it makes the most sense.
-
 [react-formstate](https://github.com/dtrelogan/react-formstate) provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
 
 for minor additions and modifications it's easiest to start there.
 
 (that being said, contributions to this library are welcome!)
-
-## design remarks
-
-you could provide a 'range' or 'between' validation, but are the bounds inclusive or exclusive?
-
-you could pass a bundle of options to 'between', but then a default message becomes contextual.
-
-this library keeps things simple:
-
-```jsx
-v => v.gte(10).lt(50)
-```
