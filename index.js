@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.adaptor = exports.FormStateAdaptor = exports.aliases = exports.content = exports.library = undefined;
+exports.validationAdapter = exports.FormStateAdapter = exports.aliases = exports.content = exports.library = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -68,21 +68,21 @@ var library = exports.library = {
 exports.content = _default2.default;
 var aliases = exports.aliases = [{ name: 'equals', alias: 'eq' }, { name: 'greaterThan', alias: 'gt' }, { name: 'integer', alias: 'int' }, { name: 'length', alias: 'len' }, { name: 'lessThan', alias: 'lt' }, { name: 'max', alias: 'lte' }, { name: 'maxLength', alias: 'maxlen' }, { name: 'maxLength', alias: 'xlen' }, { name: 'min', alias: 'gte' }, { name: 'minLength', alias: 'minlen' }, { name: 'minLength', alias: 'nlen' }];
 
-var FormStateAdaptor = exports.FormStateAdaptor = function () {
+var FormStateAdapter = exports.FormStateAdapter = function () {
 
   //
   // public
   //
 
-  function FormStateAdaptor(validationLibrary, messageContent, aliases) {
-    _classCallCheck(this, FormStateAdaptor);
+  function FormStateAdapter(validationLibrary, messageContent, aliases) {
+    _classCallCheck(this, FormStateAdapter);
 
     this.validationLibrary = validationLibrary;
     this.messageContent = messageContent;
     this.aliases = aliases;
   }
 
-  _createClass(FormStateAdaptor, [{
+  _createClass(FormStateAdapter, [{
     key: 'plugInto',
     value: function plugInto(FormState) {
       if (this.validationLibrary.required) {
@@ -133,7 +133,7 @@ var FormStateAdaptor = exports.FormStateAdaptor = function () {
     }
   }]);
 
-  return FormStateAdaptor;
+  return FormStateAdapter;
 }();
 
-var adaptor = exports.adaptor = new FormStateAdaptor(library, _default2.default, aliases);
+var validationAdapter = exports.validationAdapter = new FormStateAdapter(library, _default2.default, aliases);

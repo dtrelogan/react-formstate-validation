@@ -63,7 +63,7 @@ export let aliases = [
   { name: 'minLength', alias: 'nlen' }
 ];
 
-export class FormStateAdaptor {
+export class FormStateAdapter {
 
   //
   // public
@@ -125,4 +125,4 @@ export class FormStateAdaptor {
 }
 
 
-export let adaptor = new FormStateAdaptor(library, content, aliases);
+export let validationAdapter = new FormStateAdapter(library, content, aliases);

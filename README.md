@@ -1,71 +1,74 @@
 # react-formstate-validation
 
+[![Coverage Status](https://coveralls.io/repos/github/dtrelogan/react-formstate-validation/badge.svg?branch=master)](https://coveralls.io/github/dtrelogan/react-formstate-validation?branch=master)
+[![Build Status](https://travis-ci.org/dtrelogan/react-formstate-validation.svg?branch=master)](https://travis-ci.org/dtrelogan/react-formstate-validation)
+
 a validation library for [react-formstate](https://www.npmjs.com/package/react-formstate)
 
     $ npm install react-formstate --save
     $ npm install react-formstate-validation --save
 
-## setup
+## basic setup
 
 ```jsx
 import { FormState } from 'react-formstate';
-import { adaptor as validationAdaptor } from 'react-formstate-validation';
-validationAdaptor.plugInto(FormState);
+import { validationAdapter } from 'react-formstate-validation';
+validationAdapter.plugInto(FormState);
 ```
 
-### sample usage
+## usage
 
 ```jsx
 <Input
   formField='amount'
   label='Amount'
-  required='Please provide an amount'
-  fsValidate={v =>
-    v.min(25)
-    .message('$25 minimum')
-    .max(1000)
-    .message('$1000 maximum')
-  }
+  required
+  fsValidate={v => v.min(25).max(1000)}
   />
 ```
 
-## validation library
+to tailor a message:
 
-see the [code](/index.es6). it's not scary i promise.
+```jsx
+<Input
+  required='Please provide an amount'
+  fsv={v => v.min(25)
+    .message('Amount must be at least $25')
+    .max(1000)
+    .msg('Amount cannot be more than $1000')}
+  />
+```
 
-## why?
+## validations
 
-most validation libraries have swiss army knife functions that take a variety of options and make it difficult to produce default message content.
+strings only please. except where noted, a non-string value will fail validation.
 
-this library has simple, single-purpose validation functions that make it easy to provide default message content in whatever language you choose.
-
-it is not intended to be a robust validation library that handles every possible use case. those already exist.
-
-it *is* intended to elegantly express the most *common* use cases and save you effort where it makes the most sense.
-
-note that [react-formstate](https://www.npmjs.com/package/react-formstate) gives you a number of different ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md) so when it doesn't fit in the box there is no need to force the issue - even using this library is optional.
-
-### string values
-
-the library is optimized for html-like forms that work with string values.
-
-the only functions that work with non-string values are:
+- email
 - equals
-  - a wrapper on javascript's === operator
-  - use it to determine if a checkbox is set to true for example
-- length, maxLength, minLength
-  - these work on anything with a length property
-  - use it for a select-multiple input for example
-- exists
-  - intended for internal use since react [controlled components](https://facebook.github.io/react/docs/forms.html#controlled-components) do not provide null or undefined values
+  - a wrapper around === that accepts all types
+  - e.g., validate that a checkbox is checked
+- greaterThan
+- integer
+- length
+  - accepts anything with a length property
+- lessThan
+- max
+- maxLength
+  - accepts anything with a length property
+- min
+- minLength
+  - accepts anything with a length property
+  - e.g., validate that at least one option is selected
+- number
+- numeric
+- regex
+  - values are trimmed before comparison
+  - you'll want to tailor a message...
+- required
 
-all other functions will fail noisily if you use them with non-string values.
+for details, see the [code](/index.es6). it's very clear i promise.
 
-basically a non-string value will always cause validation to fail.
-
-### optionally terse
-
-in the interest of saving you time and reducing your jsx footprint:
+## aliases
 
 ```jsx
 export let aliases = [
@@ -82,46 +85,72 @@ export let aliases = [
   { name: 'minLength', alias: 'nlen' }
 ];
 ```
+
+## configurable message content
+
+default content from [/content/en-us/default.js](/content/en-us/default.js):
+
 ```jsx
-<Input
-  formField='amount'
-  label='Amount'
-  required='Please provide an amount'
-  fsv={v => v.min(25).msg('$25 minimum').max(1000).msg('$1000 maximum')}
-  />
+module.exports = {
+  email: '%1 must be an email address',
+  equals: '%1 must equal %2',
+  greaterThan: '%1 must be greater than %2',
+  integer: '%1 must be an integer',
+  length: '%1 must have length equal to %2',
+  lessThan: '%1 must be less than %2',
+  max: '%1 must be at most %2',
+  maxLength: '%1 must have a maximum length of %2',
+  min: '%1 must be at least %2',
+  minLength: '%1 must have a minimum length of %2',
+  number: '%1 must be a number',
+  numeric: '%1 must only contain numbers',
+  required: '%1 is required'
+};
 ```
 
-## configuration
-
-### message content
+to provide your own:
 
 ```jsx
 import { FormState } from 'react-formstate';
 import * as rfsv from 'react-formstate-validation';
-var validationAdaptor = new rfsv.FormStateAdaptor(
+let validationAdapter = new rfsv.FormStateAdapter(
   rfsv.library,
-  yourContentHere,
+  yourContent,
   rfsv.aliases
   );
-validationAdaptor.plugInto(FormState);
+validationAdapter.plugInto(FormState);
 ```
 
-see default content [here](/content/en-us/default.js)
+note you can provide your own library and aliases.
 
-### validations and aliases
+you can plug in [validator](https://www.npmjs.com/package/validator) if you want.
 
-if you have a javascript object containing validation functions that return something truthy, you can plug it in.
+## expansion
 
-you can plug in [validator](https://www.npmjs.com/package/validator) if you want:
+this library expresses *common, unambiguous* use cases and saves you effort where it makes the most sense.
+
+the [react-formstate](https://www.npmjs.com/package/react-formstate) api provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
+
+for minor additions and modifications it's easiest to start there.
+
+(that being said, contributions to this library are welcome!)
+
+## design remarks
+
+you could provide a 'range' or 'between' validation, but are the bounds inclusive or exclusive?
+
+you could pass a bundle of options to 'between', but then a default message becomes contextual.
+
+this library keeps things simple:
 
 ```jsx
-import { FormState } from 'react-formstate';
-import validator from 'validator';
-import * as rfsv from 'react-formstate-validation';
-var validationAdaptor = new rfsv.FormStateAdaptor(
-  validator,
-  optionallyProvideMessageContentHere,
-  optionallyAliasValidationFunctionNames
-  );
-validationAdaptor.plugInto(FormState);
+v => v.gte(10).lt(50)
+```
+```jsx
+module.exports = {
+  greaterThan: '%1 must be greater than %2',
+  lessThan: '%1 must be less than %2',
+  max: '%1 must be at most %2',
+  min: '%1 must be at least %2',
+};
 ```

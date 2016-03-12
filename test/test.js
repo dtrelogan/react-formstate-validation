@@ -164,15 +164,15 @@ function mock(validations) {
 }
 
 var v = {},
-  adaptor = new rfsv.FormStateAdaptor(rfsv.library, rfsv.content, rfsv.aliases);
+  adapter = new rfsv.FormStateAdapter(rfsv.library, rfsv.content, rfsv.aliases);
 
-adaptor.plugInto(mock(v));
+adapter.plugInto(mock(v));
 
 describe('No content and no aliases', function() {
   describe('#minLength', function() {
     it('returns "[label] is invalid"', function() {
       var noContent = {};
-      new rfsv.FormStateAdaptor(rfsv.library).plugInto(mock(noContent));
+      new rfsv.FormStateAdapter(rfsv.library).plugInto(mock(noContent));
       assert.equal('Password is invalid', noContent['minLength']('abc','Password',8));
     });
   });
