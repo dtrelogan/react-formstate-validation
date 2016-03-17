@@ -59,6 +59,8 @@ for details, see the [code](/index.es6). it's very clear i promise.
 - numeric
 - regex
 - required
+- startsWith
+- url
 
 ## aliases
 

@@ -11,5 +11,7 @@ module.exports = {
   minLength: '%1 must have a minimum length of %2',
   number: '%1 must be a number',
   numeric: '%1 must only contain numbers',
-  required: '%1 is required'
+  required: '%1 is required',
+  startsWith: '%1 must start with %2',
+  url: '%1 must be a url'
 };

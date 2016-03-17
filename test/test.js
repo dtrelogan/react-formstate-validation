@@ -16,6 +16,7 @@ describe('validation library', function() {
     it('multiple dots', function() { assert.equal(true, lib.email('a@b..c')); });
     it('multiple @s', function() { assert.equal(true, lib.email('a@b@c.d')); });
     it('numbers', function() { assert.equal(true, lib.email('1@2.3')); });
+    it('null', function() { assert.equal(false, lib.email(null)); });
   });
   describe('equals', function() {
     it('value', function() { assert.equal(true, lib.equals('3', '3')); });
@@ -149,6 +150,28 @@ describe('validation library', function() {
     it('null', function() { assert.equal(false, lib.required(null)); });
     it('{}', function() { assert.equal(false, lib.required({})); });
     it('boolean true', function() { assert.equal(false, lib.required({})); });
+  });
+  describe('startsWith', function() {
+    it('normal case', function() { assert.equal(true, lib.startsWith('kilgore trout','kilg')); });
+    it('no match', function() { assert.equal(false, lib.startsWith('kilgore trout','a')); });
+    it('spaces', function() { assert.equal(true, lib.startsWith('kilgore trout','kilgore ')); });
+    it('null', function() { assert.equal(false, lib.startsWith(null)); });
+    it('null searchString', function() { assert.equal(false, lib.startsWith('kilgore trout', null)); });
+    it('non-string searchString', function() { assert.equal(false, lib.startsWith('kilgore trout', 3)); });
+    it('trims value', function() { assert.equal(true, lib.startsWith('   kilgore trout','kilg')); });
+    it('does not trim searchString', function() { assert.equal(false, lib.startsWith('kilgore trout',' kilg')); });
+    it('does not trim searchString2', function() { assert.equal(false, lib.startsWith(' kilgore trout',' kilg')); });
+    it('empty string', function() { assert.equal(false, lib.startsWith('','kilgore ')); });
+  });
+  describe('url', function() {
+    it('matches http', function() { assert.equal(true, lib.url('http://react-formstate-validation.test')); });
+    it('matches https', function() { assert.equal(true, lib.url('https://react-formstate-validation.test')); });
+    it('matches ftp', function() { assert.equal(true, lib.url('ftp://react-formstate-validation.test')); });
+    it('does not match relative', function() { assert.equal(false, lib.url('/react-formstate-validation.test')); });
+    it('does not match schema relative', function() { assert.equal(false, lib.url('//react-formstate-validation.test')); });
+    it('does not match site relative', function() { assert.equal(false, lib.url('~/react-formstate-validation.test')); });
+    it('does not match gopher', function() { assert.equal(false, lib.url('gopher://react-formstate-validation.test')); });
+    it('does not crash', function() { assert.equal(false, lib.url(null)); });
   });
 });
 
@@ -302,6 +325,22 @@ describe('Messages', function() {
     });
     it('might not return a message', function() {
       assert.equal(undefined, v['required']('46','Field'));
+    });
+  });
+  describe('#startsWith', function() {
+    it('has a message', function() {
+      assert.equal('Field must start with f', v['startsWith']('','Field','f'));
+    });
+    it('might not return a message', function() {
+      assert.equal(undefined, v['startsWith']('f','Field','f'));
+    });
+  });
+  describe('#url', function() {
+    it('has a message', function() {
+      assert.equal('Field must be a url', v['url']('','Field'));
+    });
+    it('might not return a message', function() {
+      assert.equal(undefined, v['url']('http://test.test','Field'));
     });
   });
 });
