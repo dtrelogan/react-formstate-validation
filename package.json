@@ -1,6 +1,6 @@
 {
   "name": "react-formstate-validation",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "peerDependencies": {
     "react-formstate": ">=0.3.0"
   },
@@ -33,7 +33,9 @@
     "validation",
     "react",
     "form",
-    "state"
+    "state",
+    "react",
+    "forms"
   ],
   "author": "daniel trelogan",
   "license": "MIT",
