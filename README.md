@@ -10,7 +10,7 @@ a validation library for [react-formstate](https://www.npmjs.com/package/react-f
 
 ## basic setup
 
-```jsx
+```es6
 import { FormState } from 'react-formstate';
 import { validationAdapter } from 'react-formstate-validation';
 validationAdapter.plugInto(FormState);
@@ -64,7 +64,7 @@ for details, see the [code](/index.es6). it's very clear i promise.
 
 ## aliases
 
-```jsx
+```es6
 export let aliases = [
   { name: 'equals', alias: 'eq' },
   { name: 'greaterThan', alias: 'gt' },
@@ -84,7 +84,7 @@ export let aliases = [
 
 default content from [/content/en-us/default.js](/content/en-us/default.js):
 
-```jsx
+```es6
 module.exports = {
   email: '%1 must be an email address',
   equals: '%1 must equal %2',
@@ -106,7 +106,7 @@ module.exports = {
 
 to provide your own:
 
-```jsx
+```es6
 import { FormState } from 'react-formstate';
 import * as rfsv from 'react-formstate-validation';
 let validationAdapter = new rfsv.FormStateAdapter(
