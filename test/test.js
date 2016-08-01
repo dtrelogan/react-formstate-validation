@@ -171,7 +171,11 @@ describe('validation library', function() {
     it('does not match schema relative', function() { assert.equal(false, lib.url('//react-formstate-validation.test')); });
     it('does not match site relative', function() { assert.equal(false, lib.url('~/react-formstate-validation.test')); });
     it('does not match gopher', function() { assert.equal(false, lib.url('gopher://react-formstate-validation.test')); });
-    it('does not crash', function() { assert.equal(false, lib.url(null)); });
+    it('matches null', function() { assert.equal(true, lib.url(null)); });
+    it('matches empty string', function() { assert.equal(true, lib.url('')); });
+    it('matches blank string', function() { assert.equal(true, lib.url('   ')); });
+    it('does not crash on an integer', function() { assert.equal(false, lib.url(3)); });
+    it('does not crash on an object', function() { assert.equal(false, lib.url({x: 3})); });
   });
 });
 
@@ -337,7 +341,7 @@ describe('Messages', function() {
   });
   describe('#url', function() {
     it('has a message', function() {
-      assert.equal('Field must be a url', v['url']('','Field'));
+      assert.equal('Field must be a url', v['url']('badUrl','Field'));
     });
     it('might not return a message', function() {
       assert.equal(undefined, v['url']('http://test.test','Field'));

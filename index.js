@@ -67,6 +67,10 @@ var library = exports.library = {
     return library.required(value) && library.exists(searchString) && value.trim().substr(0, searchString.length) === searchString;
   },
   url: function url(value) {
+    // matches blank strings so you have a choice of pairing it with required
+    if (value === null || typeof value === 'string' && value.trim() === '') {
+      return true;
+    }
     //
     // https://gist.github.com/dperini/729294
     //
