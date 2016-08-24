@@ -62,7 +62,10 @@ describe('validation library', function() {
     it('gt', function() { assert.equal(false, lib.length('hello', 4)); });
     it('null', function() { assert.equal(false, lib.length(null, 100)); });
     it('no length', function() { assert.equal(false, lib.length({}, 100)); });
-    it('array', function() { assert.equal(true, lib.length([1,2], 2)); });
+    it('arraylt', function() { assert.equal(false, lib.length([1,2], 3)); });
+    it('arrayeq', function() { assert.equal(true, lib.length([1,2], 2)); });
+    it('arraygt', function() { assert.equal(false, lib.length([1,2], 1)); });
+    it('trims', function() { assert.equal(true, lib.length(' hello ', 5)); });
   });
   describe('lessThan', function() {
     it('lt', function() { assert.equal(true, lib.lessThan('5', 6)); });
@@ -92,7 +95,10 @@ describe('validation library', function() {
     it('gt', function() { assert.equal(false, lib.maxLength('hello', 4)); });
     it('null', function() { assert.equal(false, lib.maxLength(null, 100)); });
     it('no length', function() { assert.equal(false, lib.maxLength({}, 100)); });
-    it('array', function() { assert.equal(true, lib.maxLength([1,2], 3)); });
+    it('arraylt', function() { assert.equal(true, lib.maxLength([1,2], 3)); });
+    it('arrayeq', function() { assert.equal(true, lib.maxLength([1,2], 2)); });
+    it('arraygt', function() { assert.equal(false, lib.maxLength([1,2], 1)); });
+    it('trims', function() { assert.equal(true, lib.maxLength('  hello  ', 6)); });
   });
   describe('min', function() {
     it('lt', function() { assert.equal(false, lib.min('5', 6)); });
@@ -111,7 +117,10 @@ describe('validation library', function() {
     it('gt', function() { assert.equal(true, lib.minLength('hello', 4)); });
     it('null', function() { assert.equal(false, lib.minLength(null, 0)); });
     it('no length', function() { assert.equal(false, lib.minLength({}, 0)); });
-    it('array', function() { assert.equal(true, lib.minLength([1,2], 1)); });
+    it('arraylt', function() { assert.equal(false, lib.minLength([1,2], 3)); });
+    it('arrayeq', function() { assert.equal(true, lib.minLength([1,2], 2)); });
+    it('arraygt', function() { assert.equal(true, lib.minLength([1,2], 1)); });
+    it('trims', function() { assert.equal(false, lib.minLength('  hello   ', 6)); });
   });
   describe('number', function() {
     it('01234567899876543210', function() {

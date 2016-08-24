@@ -34,7 +34,7 @@ var library = exports.library = {
     return library.regex(value, /^-?[0-9]+$/);
   },
   length: function length(value, len) {
-    return library.exists(value) && library.exists(value.length) && value.length === len;
+    return library.exists(value) && library.exists(value.length) && (typeof value === 'string' ? value.trim() : value).length === len;
   },
   lessThan: function lessThan(value, baseline) {
     return library.required(value) && Number(value) < baseline;
@@ -43,13 +43,13 @@ var library = exports.library = {
     return library.required(value) && Number(value) <= baseline;
   },
   maxLength: function maxLength(value, len) {
-    return library.exists(value) && library.exists(value.length) && value.length <= len;
+    return library.exists(value) && library.exists(value.length) && (typeof value === 'string' ? value.trim() : value).length <= len;
   },
   min: function min(value, baseline) {
     return library.required(value) && Number(value) >= baseline;
   },
   minLength: function minLength(value, len) {
-    return library.exists(value) && library.exists(value.length) && value.length >= len;
+    return library.exists(value) && library.exists(value.length) && (typeof value === 'string' ? value.trim() : value).length >= len;
   },
   number: function number(value) {
     return library.required(value) && !Number.isNaN(Number(value));
