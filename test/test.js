@@ -11,7 +11,7 @@ describe('validation library', function() {
     it('normal case', function() { assert.equal(true, lib.email('a@b.c')); });
     it('requires @', function() { assert.equal(false, lib.email('ab.c')); });
     it('requires .', function() { assert.equal(false, lib.email('a@bc')); });
-    it('trims', function() { assert.equal(true, lib.email('  a@b.c   ')); });
+    it('does not trim', function() { assert.equal(false, lib.email('  a@b.c   ')); });
     it('spaces', function() { assert.equal(false, lib.email('a @b.c')); });
     it('multiple dots', function() { assert.equal(true, lib.email('a@b..c')); });
     it('multiple @s', function() { assert.equal(true, lib.email('a@b@c.d')); });
@@ -49,7 +49,7 @@ describe('validation library', function() {
     it('+4', function() { assert.equal(false, lib.integer('+4')); });
     it('--4', function() { assert.equal(false, lib.integer('--4')); });
     it('1.3', function() { assert.equal(false, lib.integer('1.3')); });
-    it(' 4 ', function() { assert.equal(true, lib.integer(' 4 ')); });
+    it(' 4 ', function() { assert.equal(false, lib.integer(' 4 ')); });
     it(' 4 6 ', function() { assert.equal(false, lib.integer(' 4 6 ')); });
     it('null', function() { assert.equal(false, lib.integer(null)); });
     it('boolean', function() { assert.equal(false, lib.integer(true)); });
@@ -65,7 +65,7 @@ describe('validation library', function() {
     it('arraylt', function() { assert.equal(false, lib.length([1,2], 3)); });
     it('arrayeq', function() { assert.equal(true, lib.length([1,2], 2)); });
     it('arraygt', function() { assert.equal(false, lib.length([1,2], 1)); });
-    it('trims', function() { assert.equal(true, lib.length(' hello ', 5)); });
+    it('does not trim', function() { assert.equal(false, lib.length(' hello ', 5)); });
   });
   describe('lessThan', function() {
     it('lt', function() { assert.equal(true, lib.lessThan('5', 6)); });
@@ -98,7 +98,7 @@ describe('validation library', function() {
     it('arraylt', function() { assert.equal(true, lib.maxLength([1,2], 3)); });
     it('arrayeq', function() { assert.equal(true, lib.maxLength([1,2], 2)); });
     it('arraygt', function() { assert.equal(false, lib.maxLength([1,2], 1)); });
-    it('trims', function() { assert.equal(true, lib.maxLength('  hello  ', 6)); });
+    it('does not trim', function() { assert.equal(false, lib.maxLength('  hello  ', 6)); });
   });
   describe('min', function() {
     it('lt', function() { assert.equal(false, lib.min('5', 6)); });
@@ -120,7 +120,7 @@ describe('validation library', function() {
     it('arraylt', function() { assert.equal(false, lib.minLength([1,2], 3)); });
     it('arrayeq', function() { assert.equal(true, lib.minLength([1,2], 2)); });
     it('arraygt', function() { assert.equal(true, lib.minLength([1,2], 1)); });
-    it('trims', function() { assert.equal(false, lib.minLength('  hello   ', 6)); });
+    it('does not trim', function() { assert.equal(true, lib.minLength('  hello   ', 6)); });
   });
   describe('number', function() {
     it('01234567899876543210', function() {
@@ -145,7 +145,7 @@ describe('validation library', function() {
     it('+4', function() { assert.equal(false, lib.numeric('+4')); });
     it('--4', function() { assert.equal(false, lib.numeric('--4')); });
     it('1.3', function() { assert.equal(false, lib.numeric('1.3')); });
-    it(' 4 ', function() { assert.equal(true, lib.numeric(' 4 ')); });
+    it(' 4 ', function() { assert.equal(false, lib.numeric(' 4 ')); });
     it(' 4 6 ', function() { assert.equal(false, lib.numeric(' 4 6 ')); });
     it('null', function() { assert.equal(false, lib.numeric(null)); });
     it('boolean', function() { assert.equal(false, lib.numeric(true)); });
@@ -167,9 +167,9 @@ describe('validation library', function() {
     it('null', function() { assert.equal(false, lib.startsWith(null)); });
     it('null searchString', function() { assert.equal(false, lib.startsWith('kilgore trout', null)); });
     it('non-string searchString', function() { assert.equal(false, lib.startsWith('kilgore trout', 3)); });
-    it('trims value', function() { assert.equal(true, lib.startsWith('   kilgore trout','kilg')); });
+    it('does not trim', function() { assert.equal(false, lib.startsWith('   kilgore trout','kilg')); });
     it('does not trim searchString', function() { assert.equal(false, lib.startsWith('kilgore trout',' kilg')); });
-    it('does not trim searchString2', function() { assert.equal(false, lib.startsWith(' kilgore trout',' kilg')); });
+    it('does not trim searchString2', function() { assert.equal(true, lib.startsWith(' kilgore trout',' kilg')); });
     it('empty string', function() { assert.equal(false, lib.startsWith('','kilgore ')); });
   });
   describe('url', function() {

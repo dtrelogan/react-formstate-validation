@@ -1,6 +1,6 @@
 {
   "name": "react-formstate-validation",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "peerDependencies": {
     "react-formstate": ">=0.3.0"
   },

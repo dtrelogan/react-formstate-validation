@@ -34,7 +34,7 @@ var library = exports.library = {
     return library.regex(value, /^-?[0-9]+$/);
   },
   length: function length(value, len) {
-    return library.exists(value) && library.exists(value.length) && (typeof value === 'string' ? value.trim() : value).length === len;
+    return library.exists(value) && library.exists(value.length) && value.length === len;
   },
   lessThan: function lessThan(value, baseline) {
     return library.required(value) && Number(value) < baseline;
@@ -43,13 +43,13 @@ var library = exports.library = {
     return library.required(value) && Number(value) <= baseline;
   },
   maxLength: function maxLength(value, len) {
-    return library.exists(value) && library.exists(value.length) && (typeof value === 'string' ? value.trim() : value).length <= len;
+    return library.exists(value) && library.exists(value.length) && value.length <= len;
   },
   min: function min(value, baseline) {
     return library.required(value) && Number(value) >= baseline;
   },
   minLength: function minLength(value, len) {
-    return library.exists(value) && library.exists(value.length) && (typeof value === 'string' ? value.trim() : value).length >= len;
+    return library.exists(value) && library.exists(value.length) && value.length >= len;
   },
   number: function number(value) {
     return library.required(value) && !Number.isNaN(Number(value));
@@ -58,13 +58,13 @@ var library = exports.library = {
     return library.regex(value, /^[0-9]+$/);
   },
   regex: function regex(value, pattern) {
-    return library.required(value) && pattern.test(value.trim());
+    return library.required(value) && pattern.test(value);
   },
   required: function required(value) {
     return typeof value === 'string' && value.trim() !== '';
   },
   startsWith: function startsWith(value, searchString) {
-    return library.required(value) && library.exists(searchString) && value.trim().substr(0, searchString.length) === searchString;
+    return library.required(value) && library.exists(searchString) && value.substr(0, searchString.length) === searchString;
   },
   url: function url(value) {
     // matches blank strings so you have a choice of pairing it with required

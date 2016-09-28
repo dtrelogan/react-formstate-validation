@@ -15,7 +15,7 @@ export let library = {
     return library.regex(value, /^-?[0-9]+$/);
   },
   length: function(value, len) {
-    return library.exists(value) && library.exists(value.length) && (typeof(value) === 'string' ? value.trim() : value).length === len;
+    return library.exists(value) && library.exists(value.length) && value.length === len;
   },
   lessThan: function(value, baseline) {
     return library.required(value) && Number(value) < baseline;
@@ -24,13 +24,13 @@ export let library = {
     return library.required(value) && Number(value) <= baseline;
   },
   maxLength: function(value, len) {
-    return library.exists(value) && library.exists(value.length) && (typeof(value) === 'string' ? value.trim() : value).length <= len;
+    return library.exists(value) && library.exists(value.length) && value.length <= len;
   },
   min: function(value, baseline) {
     return library.required(value) && Number(value) >= baseline;
   },
   minLength: function(value, len) {
-    return library.exists(value) && library.exists(value.length) && (typeof(value) === 'string' ? value.trim() : value).length >= len;
+    return library.exists(value) && library.exists(value.length) && value.length >= len;
   },
   number: function(value) {
     return library.required(value) && !Number.isNaN(Number(value));
@@ -39,13 +39,13 @@ export let library = {
     return library.regex(value, /^[0-9]+$/);
   },
   regex: function(value, pattern) {
-    return library.required(value) && pattern.test(value.trim());
+    return library.required(value) && pattern.test(value);
   },
   required: function(value) {
     return typeof(value) === 'string' && value.trim() !== '';
   },
   startsWith: function(value, searchString) {
-    return library.required(value) && library.exists(searchString) && value.trim().substr(0, searchString.length) === searchString;
+    return library.required(value) && library.exists(searchString) && value.substr(0, searchString.length) === searchString;
   },
   url: function(value) {
     // matches blank strings so you have a choice of pairing it with required
