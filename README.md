@@ -8,7 +8,7 @@ a validation library for [react-formstate](https://www.npmjs.com/package/react-f
     $ npm install react-formstate --save
     $ npm install react-formstate-validation --save
 
-## basic setup
+## Basic setup
 
 ```es6
 import { FormState } from 'react-formstate';
@@ -16,7 +16,7 @@ import { validationAdapter } from 'react-formstate-validation';
 validationAdapter.plugInto(FormState);
 ```
 
-## usage
+## Usage
 
 ```jsx
 <Input
@@ -27,7 +27,7 @@ validationAdapter.plugInto(FormState);
   />
 ```
 
-to tailor a message:
+To tailor a message:
 
 ```jsx
 <Input
@@ -39,11 +39,11 @@ to tailor a message:
   />
 ```
 
-## validations
+## Validations
 
-except where starred, functions only accept string values, anything else will fail validation.
+Except where starred, functions only accept string values, anything else will fail validation.
 
-for details, see the [code](/index.es6). it's very clear i promise.
+For details, see the [code](/index.es6). It's very clear i promise.
 
 - email
 - equals*
@@ -62,7 +62,7 @@ for details, see the [code](/index.es6). it's very clear i promise.
 - startsWith
 - url
 
-## aliases
+## Aliases
 
 ```es6
 export let aliases = [
@@ -80,9 +80,9 @@ export let aliases = [
 ];
 ```
 
-## configurable message content
+## Configurable message content
 
-default content from [/content/en-us/default.js](/content/en-us/default.js):
+Default content from [/content/en-us/default.js](/content/en-us/default.js):
 
 ```es6
 module.exports = {
@@ -104,7 +104,7 @@ module.exports = {
 };
 ```
 
-to provide your own:
+To provide your own:
 
 ```es6
 import { FormState } from 'react-formstate';
@@ -117,12 +117,12 @@ let validationAdapter = new rfsv.FormStateAdapter(
 validationAdapter.plugInto(FormState);
 ```
 
-note you can provide your own library and aliases. you can plug in [validator](https://www.npmjs.com/package/validator) if you want.
+Note you can provide your own library and aliases. You can plug in [validator](https://www.npmjs.com/package/validator) if you want.
 
-## expansion
+## Expansion
 
 [react-formstate](https://www.npmjs.com/package/react-formstate) provides a variety of ways to express [validation logic](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md), including [registering](https://github.com/dtrelogan/react-formstate/blob/master/docs/validationWiring.md#registering-validation-functions) your own validation functions.
 
-for minor additions and modifications it's easiest to start there.
+For minor additions and modifications it's easiest to start there.
 
-(that being said, contributions to this library are welcome!)
+(That being said, contributions to this library are welcome!)
