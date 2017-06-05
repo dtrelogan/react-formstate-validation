@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/dtrelogan/react-formstate-validation/badge.svg?branch=master)](https://coveralls.io/github/dtrelogan/react-formstate-validation?branch=master)
 [![Build Status](https://travis-ci.org/dtrelogan/react-formstate-validation.svg?branch=master)](https://travis-ci.org/dtrelogan/react-formstate-validation)
 
-a validation library for [react-formstate](https://www.npmjs.com/package/react-formstate)
+A validation library for [react-formstate](https://www.npmjs.com/package/react-formstate)
 
     $ npm install react-formstate --save
     $ npm install react-formstate-validation --save
