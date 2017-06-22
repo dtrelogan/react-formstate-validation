@@ -18,6 +18,10 @@ validationAdapter.plugInto(FormState);
 
 ## Usage
 
+Inputs in these examples **are designed to work with [react-formstate](https://www.npmjs.com/package/react-formstate).** The examples demonstrate that package's fluent validation API.
+
+react-formstate-validation contains a handful of commonly used validation methods and nothing more. They are only useful in concert with [react-formstate](https://www.npmjs.com/package/react-formstate).
+
 ```jsx
 <Input
   formField='amount'
