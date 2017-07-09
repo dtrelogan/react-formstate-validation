@@ -45,7 +45,7 @@ To tailor a message:
 
 Except where starred, functions only accept string values, anything else will fail validation.
 
-For details, see the [code](/index.es6). It's very clear i promise.
+For details, see the [code](/index.es6), it's very clear.
 
 - email
 - equals*
@@ -128,3 +128,9 @@ Note you can provide your own library and aliases. You can plug in [validator](h
 For minor additions and modifications it's easiest to start there.
 
 (That being said, contributions to this library are welcome!)
+
+### Contributions
+
+If you recognize the value of [react-formstate](https://www.npmjs.com/package/react-formstate) and [react-formstate-validation](https://www.npmjs.com/package/react-formstate-validation) please star the NPM packages and the GitHub repositories.
+
+Also, you can help others find the packages by recommending them and linking to them. Thanks!
