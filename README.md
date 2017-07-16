@@ -131,6 +131,6 @@ For minor additions and modifications it's easiest to start there.
 
 ### Contributions
 
-If you recognize the value of [react-formstate](https://www.npmjs.com/package/react-formstate) and [react-formstate-validation](https://www.npmjs.com/package/react-formstate-validation) please star the NPM packages and the GitHub repositories.
+If you see value in [react-formstate](https://www.npmjs.com/package/react-formstate) and [react-formstate-validation](https://www.npmjs.com/package/react-formstate-validation) please star the NPM packages and the GitHub repositories.
 
 Also, you can help others find the packages by recommending them and linking to them. Thanks!
