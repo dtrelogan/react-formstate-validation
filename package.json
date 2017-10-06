@@ -1,10 +1,10 @@
 {
   "name": "react-formstate-validation",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "peerDependencies": {
     "react-formstate": ">=0.3.0"
   },
-  "description": "a validation library for react-formstate",
+  "description": "A validation library for react-formstate",
   "main": "index.js",
   "scripts": {
     "build": "babel index.es6 -o index.js",
